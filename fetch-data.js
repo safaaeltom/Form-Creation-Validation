@@ -1,24 +1,25 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     async function fetchUserData() {
-        const apiurl = "https://jsonplaceholder.typicode.com/users";
+        const apiUrl = "https://jsonplaceholder.typicode.com/users";
         const dataContainer = document.getElementById("api-data");
 
         dataContainer.innerHTML = "Loading user data...";
 
         try {
-            const response = await fetch(apiurl);
+            const response = await fetch(apiUrl);
             const users = await response.json();
+            
+            dataContainer.innerHTML = "";
 
-            // create a <ul>
             const userList = document.createElement("ul");
+
             users.forEach(function(user) {
                 const li = document.createElement("li");
                 li.textContent = user.name;
                 userList.appendChild(li);
             });
 
-            dataContainer.innerHTML = "";
             dataContainer.appendChild(userList);
 
         } catch (error) {
